@@ -175,19 +175,38 @@ function updateCarouselDots() {
     });
 }
 
+let testimonialVisible = false;
+
+const testimonialSection = document.getElementById('testimonialSection');
+
+if (testimonialSection) {
+    const observer = new IntersectionObserver((entries) => {
+        testimonialVisible = entries[ 0 ].isIntersecting;
+
+        if (testimonialVisible) {
+            startAutoPlay();
+        } else {
+            stopAutoPlay();
+        }
+    }, { threshold: 0.3 });
+
+    observer.observe(testimonialSection);
+}
+
+
 function scrollToSlide(index) {
     const testimonialGrid = document.getElementById('testimonialGrid');
     if (!testimonialGrid) return;
 
     const cards = testimonialGrid.querySelectorAll('.testimonial-card');
-    if (cards[ index ]) {
-        cards[ index ].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'start'
-        });
-    }
+    if (!cards[ index ]) return;
+
+    testimonialGrid.scrollTo({
+        left: cards[ index ].offsetLeft,
+        behavior: 'smooth'
+    });
 }
+
 
 // ===== CAROUSEL NAVIGATION =====
 function initCarouselNavigation() {
@@ -333,7 +352,9 @@ const fadeObserver = new IntersectionObserver((entries) => {
 fadeElements.forEach(el => fadeObserver.observe(el));
 
 // ----- SINGLE CTA BUTTON BEHAVIOR -----
-const ctaButtons = document.querySelectorAll('.cta-main, .btn-primary');
+const ctaButtons = document.querySelectorAll(
+    '.cta-main:not([type="submit"]), .btn-primary:not([type="submit"])'
+);
 
 function handleCTA(e) {
     e.preventDefault();
@@ -427,9 +448,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize hover pause for autoplay
     initHoverPause();
-
-    // Start autoplay
-    startAutoPlay();
 
     console.log('✅ Testimonial carousel initialized with 5 client stories! Auto-play enabled.');
 });
