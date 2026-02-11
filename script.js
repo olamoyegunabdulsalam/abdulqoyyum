@@ -6,7 +6,7 @@ const testimonials = [
         content: "My new portfolio landed me three major clients within a month. The investment paid for itself 10x over.",
         rating: 5,
         result: "+300% client inquiries",
-        image: "Img/testimonial-1.jpeg",
+        image: "img/testimonial-1.jpeg",
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const testimonials = [
         content: "The credibility boost was immediate. My consultation bookings tripled, and I could raise my rates by 40%.",
         rating: 5,
         result: "40% higher rates",
-        image: "Img/testimonial-2.webp",
+        image: "img/testimonial-2.webp",
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const testimonials = [
         content: "From invisible to undeniable. Our website now converts visitors at 12% - something we never thought possible.",
         rating: 5,
         result: "12% conversion rate",
-        image: "Img/testimonial-3.jpeg",
+        image: "img/testimonial-3.jpeg",
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ const testimonials = [
         content: "The professional presentation immediately established authority. I now attract Fortune 500 clients.",
         rating: 5,
         result: "Enterprise clients",
-        image: "Img/testimonial-4.jpeg",
+        image: "img/testimonial-4.jpeg",
     },
     {
         id: 5,
@@ -42,7 +42,7 @@ const testimonials = [
         content: "Best business decision I made. The portfolio showcases my expertise better than any resume ever could.",
         rating: 5,
         result: "6-figure contract",
-        image: "Img/testimonial-5.jpeg",
+        image: "img/testimonial-5.jpeg",
     },
 ];
 // ===== RENDER TESTIMONIAL CAROUSEL =====
@@ -351,10 +351,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
 
 fadeElements.forEach(el => fadeObserver.observe(el));
 
-// ----- SINGLE CTA BUTTON BEHAVIOR -----
-const ctaButtons = document.querySelectorAll(
-    '.cta-main:not([type="submit"]), .btn-primary:not([type="submit"])'
-);
+
 
 function handleCTA(e) {
     e.preventDefault();
@@ -491,4 +488,3 @@ setInterval(() => {
         }, 500);
     }
 }, 4000);
-
